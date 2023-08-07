@@ -1,0 +1,8 @@
+#texto {
+    background-color: rgb(204, 204, 204);
+    border: 10px solid;
+    border-radius: 8px 55px 8px 55px;
+    padding: 8px;
+    width: 350px;
+    height: 80px;
+}
