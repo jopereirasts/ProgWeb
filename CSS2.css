@@ -1,0 +1,20 @@
+#texto {
+    background-color: rgb(255, 255, 255,0.8);
+    border: 10px solid;
+    border-radius: 35px;
+    border-color: rgb(189, 151, 131);
+    box-shadow: 0.5px 0.5px 4px 0.5px, 0.5px 0.5px 4px 0.5px inset;
+    width: 245px;
+    padding: 1%;
+    text-align: center;
+    margin: 25px;
+    margin-left: 250px;
+}
+
+body {
+    background-color: lightblue;
+    background-image: url(rome.jpg);
+    background-repeat: repeat-y;
+    background-position: 200px 0.5px;
+}
+
