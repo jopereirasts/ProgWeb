@@ -1,5 +1,5 @@
-document.write('<table border="1">');
 for (let i=1; i <= 10; i++) {
+    document.write('<table>');
     document.write('<tr>');
     document.write('<th colspan="2">Produtos de ' + i + '</th>');
     document.write('</tr>');
@@ -9,5 +9,6 @@ for (let i=1; i <= 10; i++) {
         document.write('<td>' + (i * j) + '</td>');
         document.write('</tr>');
     }
+    document.write('</table>');
+    document.write('<br>');
 }
-document.write('</table>');
