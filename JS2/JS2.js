@@ -5,4 +5,3 @@ console.log("3 - Tesoura");
 
 //let jogada = parseInt(prompt());
 let pc = Math.floor(Math.random() * (3 - 1) + 1);
-console.log(pc);
