@@ -1,56 +1,26 @@
-console.log("Escolha sua jogada: \n 1 - Papel \n 2 - Pedra \n 3 - Tesoura");
-let pcOuJogada = 0;
-//1 - empate
-//2 - jogaodr ganhou
-//3 - pc ganhou
+const opcoes = ["Papel", "Pedra", "Tesoura"];
 let pontos = 0;
-let jogada = parseInt(prompt("Escolha sua jogada "));
-while(pcOuJogada!=3){
-    let pc = Math.floor(Math.random() * (3 - 1) + 1);
-    switch(pc){
-        case 1:
-            console.log("O computador jogou Papel");
-            if(jogada==1){
-                pcOuJogada = 1;
-                console.log("A rodada empatou!");
-            }else if(jogada == 2){
-                console.log(`Você perdeu! A sua pontuação foi de ${pontos}`);
-                pcOuJogada = 3;
-            }else{
-                pcOuJogada = 2;
-                console.log("Você ganhou!");
-                pontos = pontos +1;
-            }
-            break;
-        case 2:
-            console.log("O computador jogou Pedra");
-            if(jogada==2){
-                pcOuJogada = 1;
-                console.log("A rodada empatou!");
-            }else if(jogada == 3){
-                console.log(`Você perdeu! A sua pontuação foi de ${pontos}`);
-                pcOuJogada = 3;
-            }else{
-                pcOuJogada = 2;
-                console.log("Você ganhou!");
-                pontos = pontos +1;
-            }
-            break;
-        case 3:
-            console.log("O computador jogou Tesoura");
-            if(jogada==3){
-                pcOuJogada = 1;
-                console.log("A rodada empatou!");
-            }else if(jogada == 1){
-                console.log(`Você perdeu! A sua pontuação foi de ${pontos}`);
-                pcOuJogada = 3;
-            }else{
-                pcOuJogada = 2;
-                console.log("Você ganhou!");
-                pontos = pontos +1;
-            }
-            break;
+
+while (true) {
+    console.log("Escolha sua jogada:\n1 - Papel\n2 - Pedra\n3 - Tesoura");
+    const jogada = parseInt(prompt("Escolha:"));
+    console.log(`Você jogou ${opcoes[jogada - 1]}`);
+    
+    if (isNaN(jogada) || jogada < 1 || jogada > 3) {
+        console.log("Escolha inválida. O jogo foi encerrado.");
+        break;
     }
-    console.log("Escolha sua jogada: \n 1 - Papel \n 2 - Pedra \n 3 - Tesoura");
-    jogada = parseInt(prompt("Escolha sua jogada "));
+    
+    const pc = Math.floor(Math.random() * 3) + 1;
+    console.log(`O computador jogou ${opcoes[pc - 1]}`);
+    
+    if (jogada === pc) {
+        console.log("A rodada empatou!");
+    } else if ((jogada === 1 && pc === 2) || (jogada === 2 && pc === 3) || (jogada === 3 && pc === 1)) {
+        console.log(`Você perdeu! Sua pontuação final foi de ${pontos}`);
+        break;
+    } else {
+        console.log("Você ganhou!");
+        pontos++;
+    }
 }
