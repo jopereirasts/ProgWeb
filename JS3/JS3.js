@@ -39,4 +39,37 @@ class IntegerSet {
         }
         return newSet;
     }
+
+    toString() {
+        const elements = [];
+        for (let i = 0; i <= this.maxValue; i++) {
+          if (this.set[i]) {
+            elements.push(i);
+          }
+        }
+        return `{${elements.join(', ')}}`;
+    }
 }
+
+const primConjunto = new IntegerSet(10);
+const segConjunto = new IntegerSet(10);
+
+primConjunto.insert(2);
+primConjunto.insert(4);
+primConjunto.insert(6);
+
+segConjunto.insert(4);
+segConjunto.insert(6);
+segConjunto.insert(8);
+
+console.log("Conjunto 1:", primConjunto.toString());
+console.log("Conjunto 2:", segConjunto.toString());
+
+const conjuntoUniao = primConjunto.union(segConjunto);
+console.log("União:", conjuntoUniao.toString());
+
+const conjuntoIntersec = primConjunto.intersection(segConjunto);
+console.log("Interseção:", conjuntoIntersec.toString());
+
+const conjuntoDiff = primConjunto.difference(segConjunto);
+console.log("Diferença:", conjuntoDiff.toString());
