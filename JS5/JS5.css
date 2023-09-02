@@ -1,0 +1,24 @@
+input {
+    width: 35px;
+}
+
+p {
+    display:inline
+}
+
+.barra{
+    background-color: red;
+    width: 20px;
+    margin: 1px;
+    
+}
+
+.barras{
+    margin: 5px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#barra1{
+    height: 25px;
+}
