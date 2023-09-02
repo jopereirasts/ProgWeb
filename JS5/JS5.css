@@ -3,18 +3,19 @@ input {
 }
 
 p {
-    display:inline
+    display: inline;
 }
 
-.barra{
+.barra {
     background-color: red;
     margin: 1px;
-    
+    height: 0px;
+    width: 0px;
 }
 
-.barras{
+.barras {
     margin: 5px;
     display: flex;
     justify-content: flex-start;
-    align-items: end;
+    align-items: flex-end;
 }
