@@ -8,7 +8,6 @@ p {
 
 .barra{
     background-color: red;
-    width: 20px;
     margin: 1px;
     
 }
@@ -17,8 +16,5 @@ p {
     margin: 5px;
     display: flex;
     justify-content: flex-start;
-}
-
-#barra1{
-    height: 25px;
+    align-items: end;
 }
