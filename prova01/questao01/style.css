@@ -1,0 +1,30 @@
+.quadrado{
+    background-color: red;
+    height: 100px;
+    width: 100px;
+}
+
+.quadrados{
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 200px;
+    margin: 10px;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+.cima{
+    display: flex;
+    flex-direction: row;
+}
+
+.baixo{
+    display: flex;
+    flex-direction: row;
+}
