@@ -1,0 +1,17 @@
+Podem ser utilizados alguns seletores:
+O primeiro é por tipo, selecionando a tag span
+também é possível selecionar pelo título (por atributo), selecionando span[title="css"]
+E por fim, é possível selecionar por descendente, selecionando p .cl1
+Eles apareceriam assim num arquivo css:
+
+span{
+    ...
+}
+
+span[title="css"]{
+    ...
+}
+
+p .cl1{
+    ...
+}
