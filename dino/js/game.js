@@ -4,11 +4,13 @@
     const HEIGHT = 300;
     const WIDTH = 1024;
     const PROB_NUVEM = 1;
+    const PROB_CACTO = 1;
   
     let gameLoop;
     let deserto;
     let dino;
     let nuvens = [];
+    let cactos = [];
     let frame = 0;
   
     function init() {
@@ -94,6 +96,19 @@
         this.element.style.right = `${parseInt(this.element.style.right) + 1}px`;
       }
     }
+
+    class Cacto {
+      constructor() {
+        this.element = document.createElement("div");
+        this.element.className = "cacto";
+        this.element.style.right = 0;
+        this.element.style.bottom = "14px";
+        deserto.element.appendChild(this.element);
+      }
+      mover() {
+        this.element.style.right = `${parseInt(this.element.style.right) + 1}px`;
+      }
+    }
   
     function run() {
       frame = frame + 1
@@ -102,6 +117,9 @@
       dino.correr()
       if (Math.random() * 100 <= PROB_NUVEM) nuvens.push(new Nuvem());
       if (frame % 2 === 0) nuvens.forEach(nuvem => nuvem.mover());
+
+      if (Math.random() * 100 <= PROB_CACTO) cactos.push(new Cacto());
+      cactos.forEach(cacto => cacto.mover());
     }
   
     init()
