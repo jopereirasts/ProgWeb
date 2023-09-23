@@ -102,7 +102,7 @@
         this.element = document.createElement("div");
         this.element.className = "cacto";
         this.element.style.right = 0;
-        this.element.style.bottom = "14px";
+        this.element.style.bottom = "10px";
         deserto.element.appendChild(this.element);
       }
       mover() {
@@ -115,10 +115,10 @@
       if (frame === FPS) frame = 0;
       deserto.mover()
       dino.correr()
-      if (Math.random() * 100 <= PROB_NUVEM) nuvens.push(new Nuvem());
+      if (Math.random() * 70 <= PROB_NUVEM) nuvens.push(new Nuvem());
       if (frame % 2 === 0) nuvens.forEach(nuvem => nuvem.mover());
 
-      if (Math.random() * 100 <= PROB_CACTO) cactos.push(new Cacto());
+      if (frame % 250 === 0) cactos.push(new Cacto());
       cactos.forEach(cacto => cacto.mover());
     }
   
