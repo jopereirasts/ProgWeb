@@ -4,7 +4,6 @@
     const HEIGHT = 300;
     const WIDTH = 1024;
     const PROB_NUVEM = 1;
-    const PROB_CACTO = 1;
   
     let gameLoop;
     let deserto;
@@ -14,9 +13,32 @@
     let frame = 0;
   
     function init() {
-      gameLoop = setInterval(run, 1000 / FPS)
       deserto = new Deserto();
       dino = new Dino();
+    
+      window.addEventListener("keydown", startGameOnSpace);
+
+      window.addEventListener("keydown", pauseGameOnP);
+    
+    }
+    
+    function startGameOnSpace(e) {
+      if (e.code === "Space") {
+        window.removeEventListener("keydown", startGameOnSpace);
+    
+        gameLoop = setInterval(run, 1000 / FPS);
+      }
+    }
+
+    function pauseGameOnP(e) {
+      if (e.code === "KeyP") {
+        if (typeof gameLoop !== "undefined") {
+          clearInterval(gameLoop);
+          gameLoop = undefined;
+        } else {
+          gameLoop = setInterval(run, 1000 / FPS);
+        }
+      }
     }
   
     window.addEventListener("keydown", (e) => {
@@ -118,7 +140,7 @@
       if (Math.random() * 70 <= PROB_NUVEM) nuvens.push(new Nuvem());
       if (frame % 2 === 0) nuvens.forEach(nuvem => nuvem.mover());
 
-      if (frame % 250 === 0) cactos.push(new Cacto());
+      if (frame % 260 === 0) cactos.push(new Cacto());
       cactos.forEach(cacto => cacto.mover());
     }
   
