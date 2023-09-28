@@ -71,7 +71,8 @@
         this.backgroundPositionsX = {
           correndo1: "-1391px",
           correndo2: "-1457px",
-          pulando: "-1259px"
+          pulando: "-1259px",
+          agachado: "-1652px"
         }
         this.#status = 0; // 0-correndo, 1-subindo, 2-descendo
         this.altumaMinima = 2;
