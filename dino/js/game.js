@@ -8,9 +8,11 @@
     let gameLoop;
     let deserto;
     let dino;
+    let pause = false;
     let nuvens = [];
     let cactos = [];
     let frame = 0;
+    let botaoAgachado = false;
   
     function init() {
       deserto = new Deserto();
@@ -35,8 +37,10 @@
         if (typeof gameLoop !== "undefined") {
           clearInterval(gameLoop);
           gameLoop = undefined;
+          pause = true;
         } else {
           gameLoop = setInterval(run, 1000 / FPS);
+          pause = false;
         }
       }
     }
@@ -46,6 +50,26 @@
         if (dino.status === 0) dino.status = 1;
       }
     })
+
+    window.addEventListener("keydown", (e) => {
+      if (e.code === "ArrowDown" && !pause) {
+        botaoAgachado = true;
+        dino.element.style.width = '84px';
+        dino.element.style.height = '40px';
+        dino.element.style.backgroundPositionX = dino.element.style.backgroundPositionX === dino.backgroundPositionsX.agachando1 ? dino.backgroundPositionsX.agachando2 : dino.backgroundPositionsX.agachando1;
+        dino.element.style.backgroundPositionY = "-28px";
+        dino.element.style.bottom = `${parseInt(dino.element.style.bottom) - 1}px`;
+        if (parseInt(dino.element.style.bottom) <= dino.altumaMinima) dino.element.style.bottom = '2px';
+      }
+    });
+
+    window.addEventListener("keyup", (e) => {
+      if (e.code === "ArrowDown") {
+        botaoAgachado = false; 
+        console.log("soltou");
+      }
+    });
+    
   
     class Deserto {
       constructor() {
@@ -72,9 +96,10 @@
           correndo1: "-1391px",
           correndo2: "-1457px",
           pulando: "-1259px",
-          agachado: "-1652px"
+          agachando1: "-1654px",
+          agachando2: "-1742px"
         }
-        this.#status = 0; // 0-correndo, 1-subindo, 2-descendo
+        this.#status = 0; // 0-correndo, 1-subindo, 2-descendo, 3-agachado
         this.altumaMinima = 2;
         this.altumaMaxima = 100;
         this.element = document.createElement("div")
@@ -94,13 +119,24 @@
         return this.#status;
       }
       correr() {
-        if (this.#status === 0 && frame % 20 === 0) this.element.style.backgroundPositionX = this.element.style.backgroundPositionX === this.backgroundPositionsX.correndo1 ? this.backgroundPositionsX.correndo2 : this.backgroundPositionsX.correndo1;
+        if (this.#status === 0 && frame % 20 === 0 && !botaoAgachado) {
+          this.element.style.width = `62px`;
+          this.element.style.height = `68px`;
+          this.element.style.backgroundPositionY = "-2px";
+          this.element.style.backgroundPositionX = this.element.style.backgroundPositionX === this.backgroundPositionsX.correndo1 ? this.backgroundPositionsX.correndo2 : this.backgroundPositionsX.correndo1;
+        }
         else if (this.#status === 1) {
+          this.element.style.width = `62px`;
+          this.element.style.height = `68px`;
+          this.element.style.backgroundPositionY = "-2px";
           this.element.style.backgroundPositionX = this.backgroundPositionsX.pulando;
           this.element.style.bottom = `${parseInt(this.element.style.bottom) + 1}px`;
           if (parseInt(this.element.style.bottom) >= this.altumaMaxima) this.status = 2;
         }
         else if (this.#status === 2) {
+          this.element.style.width = `62px`;
+          this.element.style.height = `68px`;
+          this.element.style.backgroundPositionY = "-2px";
           this.element.style.bottom = `${parseInt(this.element.style.bottom) - 1}px`;
           if (parseInt(this.element.style.bottom) <= this.altumaMinima) this.status = 0;
         }
@@ -138,7 +174,7 @@
       if (frame === FPS) frame = 0;
       deserto.mover()
       dino.correr()
-      if (Math.random() * 70 <= PROB_NUVEM) nuvens.push(new Nuvem());
+      if (Math.random() * 100 <= PROB_NUVEM) nuvens.push(new Nuvem());
       if (frame % 2 === 0) nuvens.forEach(nuvem => nuvem.mover());
 
       if (frame % 260 === 0) cactos.push(new Cacto());
