@@ -13,15 +13,23 @@
     let cactos = [];
     let frame = 0;
     let botaoAgachado = false;
+    let Manha = true;
   
     function init() {
       deserto = new Deserto();
       dino = new Dino();
     
-      window.addEventListener("keydown", startGameOnSpace);
+      setInterval(ManhaNoite, 60000);
 
+      window.addEventListener("keydown", startGameOnSpace);
       window.addEventListener("keydown", pauseGameOnP);
     
+    }
+
+    function ManhaNoite() {
+      Manha = !Manha;
+      const quadradoJogo = document.querySelector('.deserto');
+      quadradoJogo.style.backgroundColor = Manha ? "white" : "black";
     }
     
     function startGameOnSpace(e) {
