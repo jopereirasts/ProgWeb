@@ -88,6 +88,7 @@
         this.chao.style.backgroundPositionX = `${parseInt(this.chao.style.backgroundPositionX) - 1}px`
       }
     }
+
   
     class Dino {
       #status
@@ -178,8 +179,19 @@
       if (frame % 2 === 0) nuvens.forEach(nuvem => nuvem.mover());
 
       if (frame % 260 === 0) cactos.push(new Cacto());
-      cactos.forEach(cacto => cacto.mover());
+      cactos.forEach(cacto => {
+        cacto.mover();
+        
+        if (parseInt(cacto.element.style.right) >= WIDTH) {
+          cactos.shift();
+          cacto.element.remove();
+        }
+      });
+
+      console.log(cactos.length); //testeeeee
+
     }
+    
   
     init()
   
