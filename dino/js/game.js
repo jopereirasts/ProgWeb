@@ -176,7 +176,13 @@
       deserto.mover()
       dino.correr()
       if (Math.random() * 100 <= PROB_NUVEM) nuvens.push(new Nuvem());
-      if (frame % 2 === 0) nuvens.forEach(nuvem => nuvem.mover());
+      if (frame % 2 === 0) nuvens.forEach(nuvem => {
+        nuvem.mover()
+        if (parseInt(nuvem.element.style.right) >= WIDTH) {
+          nuvens.shift();
+          nuvem.element.remove();
+        }
+      });
 
       if (frame % 260 === 0) cactos.push(new Cacto());
       cactos.forEach(cacto => {
@@ -188,7 +194,8 @@
         }
       });
 
-      console.log(cactos.length); //testeeeee
+      console.log("cactos "+cactos.length); //testeeeee
+      console.log("nuvens "+nuvens.length);
 
     }
     
