@@ -65,7 +65,7 @@
         dino.element.style.width = '84px';
         dino.element.style.height = '40px';
         dino.element.style.backgroundPositionX = dino.element.style.backgroundPositionX === dino.backgroundPositionsX.agachando1 ? dino.backgroundPositionsX.agachando2 : dino.backgroundPositionsX.agachando1;
-        dino.element.style.backgroundPositionY = "-28px";
+        dino.element.style.backgroundPositionY = "-30px";
         dino.element.style.bottom = `${parseInt(dino.element.style.bottom) - 1}px`;
         if (parseInt(dino.element.style.bottom) <= dino.altumaMinima) dino.element.style.bottom = '2px';
       }
@@ -74,7 +74,7 @@
     window.addEventListener("keyup", (e) => {
       if (e.code === "ArrowDown") {
         botaoAgachado = false; 
-        console.log("soltou");
+        //console.log("soltou");
       }
     });
     
@@ -146,6 +146,7 @@
           this.element.style.width = `66px`;
           this.element.style.height = `68px`;
           this.element.style.backgroundPositionY = "-2px";
+          this.element.style.backgroundPositionX = this.backgroundPositionsX.pulando;
           this.element.style.bottom = `${parseInt(this.element.style.bottom) - 1}px`;
           if (parseInt(this.element.style.bottom) <= this.altumaMinima) this.status = 0;
         }
@@ -203,8 +204,8 @@
         }
       });
 
-      console.log("cactos "+cactos.length); //testeeeee
-      console.log("nuvens "+nuvens.length);
+      //console.log("cactos "+cactos.length); //testeeeee
+      //console.log("nuvens "+nuvens.length);
 
     }
     
