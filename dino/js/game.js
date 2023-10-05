@@ -29,7 +29,7 @@
     function ManhaNoite() {
       Manha = !Manha;
       const quadradoJogo = document.querySelector('.deserto');
-      quadradoJogo.style.backgroundColor = Manha ? "white" : "black";
+      quadradoJogo.style.backgroundColor = Manha ? "white" : "darkslategrey";
     }
     
     function startGameOnSpace(e) {
@@ -129,13 +129,13 @@
       }
       correr() {
         if (this.#status === 0 && frame % 20 === 0 && !botaoAgachado) {
-          this.element.style.width = `62px`;
+          this.element.style.width = `66px`;
           this.element.style.height = `68px`;
           this.element.style.backgroundPositionY = "-2px";
           this.element.style.backgroundPositionX = this.element.style.backgroundPositionX === this.backgroundPositionsX.correndo1 ? this.backgroundPositionsX.correndo2 : this.backgroundPositionsX.correndo1;
         }
         else if (this.#status === 1) {
-          this.element.style.width = `62px`;
+          this.element.style.width = `66px`;
           this.element.style.height = `68px`;
           this.element.style.backgroundPositionY = "-2px";
           this.element.style.backgroundPositionX = this.backgroundPositionsX.pulando;
@@ -143,7 +143,7 @@
           if (parseInt(this.element.style.bottom) >= this.altumaMaxima) this.status = 2;
         }
         else if (this.#status === 2) {
-          this.element.style.width = `62px`;
+          this.element.style.width = `66px`;
           this.element.style.height = `68px`;
           this.element.style.backgroundPositionY = "-2px";
           this.element.style.bottom = `${parseInt(this.element.style.bottom) - 1}px`;
@@ -199,6 +199,7 @@
         if (parseInt(cacto.element.style.right) >= WIDTH) {
           cactos.shift();
           cacto.element.remove();
+
         }
       });
 
