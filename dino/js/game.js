@@ -4,6 +4,7 @@
     const HEIGHT = 300;
     const WIDTH = 1024;
     const PROB_NUVEM = 1;
+    const alturaPassaro = ["2px", "43px", "75px"];
   
     let gameLoop;
     let deserto;
@@ -62,8 +63,8 @@
     window.addEventListener("keydown", (e) => {
       if (e.code === "ArrowDown" && !pause) {
         botaoAgachado = true;
-        dino.element.style.width = '84px';
-        dino.element.style.height = '40px';
+        dino.element.style.width = '85px';
+        dino.element.style.height = '40.5px';
         dino.element.style.backgroundPositionX = dino.element.style.backgroundPositionX === dino.backgroundPositionsX.agachando1 ? dino.backgroundPositionsX.agachando2 : dino.backgroundPositionsX.agachando1;
         dino.element.style.backgroundPositionY = "-30px";
         dino.element.style.bottom = `${parseInt(dino.element.style.bottom) - 1}px`;
@@ -107,7 +108,7 @@
           pulando: "-1259px",
           agachando1: "-1654px",
           agachando2: "-1742px"
-        }
+        };
         this.#status = 0; // 0-correndo, 1-subindo, 2-descendo, 3-agachado
         this.altumaMinima = 2;
         this.altumaMaxima = 100;
@@ -197,12 +198,13 @@
         this.backgroundPositionsX = {
           cima: "-265px",
           baixo: "-195px"
-        }
+        };
+        const altura = Math.floor(Math.random() * alturaPassaro.length);
         this.element = document.createElement("div");
         this.element.style.backgroundPositionY = "-2px";
         this.element.className = "passaro";
         this.element.style.right = 0;
-        this.element.style.bottom = "2px";
+        this.element.style.bottom = alturaPassaro[altura]; 
         deserto.element.appendChild(this.element);
       }
       mover() {
@@ -213,7 +215,6 @@
 
     function RetornaObstaculo() {
       const randomValue = Math.random();
-    
       if (randomValue < 0.33) {
         return Cacto;
       } else if (randomValue < 0.66 && randomValue >= 0.33) {
@@ -251,8 +252,8 @@
         }
       });
 
-      console.log("cactos "+obstaculos.length); //testeeeee
-      console.log("nuvens "+nuvens.length);
+      //console.log("cactos "+obstaculos.length); //testeeeee
+      //console.log("nuvens "+nuvens.length);
 
     }
     
