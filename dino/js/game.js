@@ -10,7 +10,7 @@
     let dino;
     let pause = false;
     let nuvens = [];
-    let cactos = [];
+    let obstaculos = [];
     let frame = 0;
     let botaoAgachado = false;
     let Manha = true;
@@ -191,6 +191,37 @@
         this.element.style.right = `${parseInt(this.element.style.right) + 1}px`;
       }
     }
+
+    class Passaro {
+      constructor() {
+        this.backgroundPositionsX = {
+          cima: "-265px",
+          baixo: "-195px"
+        }
+        this.element = document.createElement("div");
+        this.element.style.backgroundPositionY = "-2px";
+        this.element.className = "passaro";
+        this.element.style.right = 0;
+        this.element.style.bottom = "2px";
+        deserto.element.appendChild(this.element);
+      }
+      mover() {
+        this.element.style.right = `${parseInt(this.element.style.right) + 1}px`;
+        this.element.style.backgroundPositionX = this.element.style.backgroundPositionX === this.backgroundPositionsX.cima ? this.backgroundPositionsX.baixo : this.backgroundPositionsX.cima;
+      }
+    }
+
+    function RetornaObstaculo() {
+      const randomValue = Math.random();
+    
+      if (randomValue < 0.33) {
+        return Cacto;
+      } else if (randomValue < 0.66 && randomValue >= 0.33) {
+        return CactoMaior;
+      } else {
+        return Passaro;
+      }
+    }
   
     function run() {
       frame = frame + 1
@@ -207,22 +238,21 @@
       });
 
       if (frame % 1000 === 0) {
-        const CactoAleatorio = Math.random() < 0.5 ? Cacto : CactoMaior;
-
-        cactos.push(new CactoAleatorio());
+        const obstaculo = RetornaObstaculo();
+        obstaculos.push(new obstaculo());
       }
-      cactos.forEach(cacto => {
-        cacto.mover();
+      obstaculos.forEach(obstaculo => {
+        obstaculo.mover();
         
-        if (parseInt(cacto.element.style.right) >= WIDTH) {
-          cactos.shift();
-          cacto.element.remove();
+        if (parseInt(obstaculo.element.style.right) >= WIDTH) {
+          obstaculos.shift();
+          obstaculo.element.remove();
 
         }
       });
 
-      //console.log("cactos "+cactos.length); //testeeeee
-      //console.log("nuvens "+nuvens.length);
+      console.log("cactos "+obstaculos.length); //testeeeee
+      console.log("nuvens "+nuvens.length);
 
     }
     

@@ -50,3 +50,12 @@
   height: 76px;
   z-index: 3;
 }
+
+.passaro{
+  background-image: url(../img/sprite.png);
+  background-position: -195px -2px;
+  position: absolute;
+  width: 68px;
+  height: 60px;
+  z-index: 3;
+}
