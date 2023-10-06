@@ -44,16 +44,14 @@
 
 .cactomaior{
   background-image: url(../img/sprite.png);
-  background-position: -488px -2px;
   position: absolute;
-  width: 36px;
+  width: 37px;
   height: 76px;
   z-index: 3;
 }
 
 .passaro{
   background-image: url(../img/sprite.png);
-  background-position: -195px -2px;
   position: absolute;
   width: 68px;
   height: 60px;

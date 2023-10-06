@@ -4,7 +4,6 @@
     const HEIGHT = 300;
     const WIDTH = 1024;
     const PROB_NUVEM = 1;
-    const alturaPassaro = ["2px", "43px", "75px"];
   
     let gameLoop;
     let deserto;
@@ -20,7 +19,7 @@
       deserto = new Deserto();
       dino = new Dino();
     
-      setInterval(ManhaNoite, 1000);
+      setInterval(ManhaNoite, 60000);
 
       window.addEventListener("keydown", startGameOnSpace);
       window.addEventListener("keydown", pauseGameOnP);
@@ -111,7 +110,7 @@
         };
         this.#status = 0; // 0-correndo, 1-subindo, 2-descendo, 3-agachado
         this.altumaMinima = 2;
-        this.altumaMaxima = 100;
+        this.altumaMaxima = 120;
         this.element = document.createElement("div")
         this.element.className = "dino";
         this.element.style.backgroundPositionX = this.backgroundPositionsX.correndo1;
@@ -169,9 +168,13 @@
 
     class Cacto {
       constructor() {
+        const tiposCacto = ["-334px", "-386px", "-437px"];
+        const tipo = Math.floor(Math.random() * tiposCacto.length);
         this.element = document.createElement("div");
         this.element.className = "cacto";
         this.element.style.right = 0;
+        this.element.style.backgroundPositionY = "-2px";
+        this.element.style.backgroundPositionX = tiposCacto[tipo];
         this.element.style.bottom = "5px";
         deserto.element.appendChild(this.element);
       }
@@ -182,9 +185,13 @@
 
     class CactoMaior {
       constructor() {
+        const tiposCactoMaior = ["-489px", "-527px", "-564px", "-602px", "-678px"];
+        const tipo = Math.floor(Math.random() * tiposCactoMaior.length);
         this.element = document.createElement("div");
         this.element.className = "cactomaior";
         this.element.style.right = 0;
+        this.element.style.backgroundPositionY = "-2px";
+        this.element.style.backgroundPositionX = tiposCactoMaior[tipo];
         this.element.style.bottom = "2px";
         deserto.element.appendChild(this.element);
       }
@@ -199,6 +206,7 @@
           cima: "-265px",
           baixo: "-195px"
         };
+        const alturaPassaro = ["2px", "43px", "75px"];
         const altura = Math.floor(Math.random() * alturaPassaro.length);
         this.element = document.createElement("div");
         this.element.style.backgroundPositionY = "-2px";
@@ -215,6 +223,7 @@
 
     function RetornaObstaculo() {
       const randomValue = Math.random();
+      //const randomValue = 0.32;
       if (randomValue < 0.33) {
         return Cacto;
       } else if (randomValue < 0.66 && randomValue >= 0.33) {
@@ -251,6 +260,8 @@
 
         }
       });
+
+      verificaColisao(dino, obstaculos);
 
       //console.log("cactos "+obstaculos.length); //testeeeee
       //console.log("nuvens "+nuvens.length);
