@@ -19,7 +19,7 @@
       deserto = new Deserto();
       dino = new Dino();
     
-      setInterval(ManhaNoite, 60000);
+      setInterval(ManhaNoite, 1000);
 
       window.addEventListener("keydown", startGameOnSpace);
       window.addEventListener("keydown", pauseGameOnP);
@@ -28,8 +28,8 @@
 
     function ManhaNoite() {
       Manha = !Manha;
-      const quadradoJogo = document.querySelector('.deserto');
-      quadradoJogo.style.backgroundColor = Manha ? "white" : "darkslategrey";
+      const fundoDeserto = document.querySelector('.deserto');
+      fundoDeserto.style.backgroundColor = Manha ? "white" : "darkslategrey";
     }
     
     function startGameOnSpace(e) {
@@ -171,7 +171,20 @@
         this.element = document.createElement("div");
         this.element.className = "cacto";
         this.element.style.right = 0;
-        this.element.style.bottom = "10px";
+        this.element.style.bottom = "5px";
+        deserto.element.appendChild(this.element);
+      }
+      mover() {
+        this.element.style.right = `${parseInt(this.element.style.right) + 1}px`;
+      }
+    }
+
+    class CactoMaior {
+      constructor() {
+        this.element = document.createElement("div");
+        this.element.className = "cactomaior";
+        this.element.style.right = 0;
+        this.element.style.bottom = "2px";
         deserto.element.appendChild(this.element);
       }
       mover() {
@@ -193,7 +206,11 @@
         }
       });
 
-      if (frame % 260 === 0) cactos.push(new Cacto());
+      if (frame % 1000 === 0) {
+        const CactoAleatorio = Math.random() < 0.5 ? Cacto : CactoMaior;
+
+        cactos.push(new CactoAleatorio());
+      }
       cactos.forEach(cacto => {
         cacto.mover();
         
