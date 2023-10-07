@@ -1,6 +1,6 @@
 (function () {
 
-    const FPS = 300;
+    const FPS = 400;
     const HEIGHT = 300;
     const WIDTH = 1024;
     const PROB_NUVEM = 1;
@@ -15,6 +15,7 @@
     let botaoAgachado = false;
     let Manha = true;
     let pontuacao = 0;
+    let velocidade = 1;
   
     function init() {
       deserto = new Deserto();
@@ -26,6 +27,12 @@
       window.addEventListener("keydown", pauseGameOnP);
     
     }
+
+    function aumentarVelocidade() {
+      velocidade += 1;
+    }
+  
+    setTimeout(aumentarVelocidade, 60000);
 
     function ManhaNoite() {
       Manha = !Manha;
@@ -93,7 +100,7 @@
         this.element.appendChild(this.chao)
       }
       mover() {
-        this.chao.style.backgroundPositionX = `${parseInt(this.chao.style.backgroundPositionX) - 1}px`
+        this.chao.style.backgroundPositionX = `${parseInt(this.chao.style.backgroundPositionX) - velocidade}px`
       }
     }
 
@@ -188,7 +195,7 @@
         deserto.element.appendChild(this.element);
       }
       mover() {
-        this.element.style.right = `${parseInt(this.element.style.right) + 1}px`;
+        this.element.style.right = `${parseInt(this.element.style.right) + velocidade}px`;
       }
     }
 
@@ -205,7 +212,7 @@
         deserto.element.appendChild(this.element);
       }
       mover() {
-        this.element.style.right = `${parseInt(this.element.style.right) + 1}px`;
+        this.element.style.right = `${parseInt(this.element.style.right) + velocidade}px`;
       }
     }
 
@@ -225,7 +232,7 @@
         deserto.element.appendChild(this.element);
       }
       mover() {
-        this.element.style.right = `${parseInt(this.element.style.right) + 1}px`;
+        this.element.style.right = `${parseInt(this.element.style.right) + velocidade}px`;
         this.element.style.backgroundPositionX = this.element.style.backgroundPositionX === this.backgroundPositionsX.cima ? this.backgroundPositionsX.baixo : this.backgroundPositionsX.cima;
         
       }
