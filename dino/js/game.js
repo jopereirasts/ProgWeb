@@ -100,13 +100,15 @@
   
     class Dino {
       #status
+      #colidiu
       constructor() {
         this.backgroundPositionsX = {
           correndo1: "-1391px",
           correndo2: "-1457px",
           pulando: "-1259px",
           agachando1: "-1654px",
-          agachando2: "-1742px"
+          agachando2: "-1742px",
+          colisao: "-1524px"
         };
         this.#status = 0; // 0-correndo, 1-subindo, 2-descendo, 3-agachado
         this.altumaMinima = 2;
@@ -116,6 +118,7 @@
         this.element.style.backgroundPositionX = this.backgroundPositionsX.correndo1;
         this.element.style.backgroundPositionY = "-2px";
         this.element.style.bottom = `${this.altumaMinima}px`
+        this.#colidiu = false;
         deserto.element.appendChild(this.element)
       }
       /**
@@ -126,6 +129,12 @@
       }
       get status() {
         return this.#status;
+      }
+      set colidiu(value) {
+        this.#colidiu = value;
+      }
+      get colidiu() {
+        return this.#colidiu;
       }
       correr() {
         if (this.#status === 0 && frame % 20 === 0 && !botaoAgachado) {
@@ -278,9 +287,6 @@
       });
     }
 
-
-
-
     function verificaColisao() {
       for (let i = 0; i < obstaculos.length; i++) {
         const obstaculo = obstaculos[i];
@@ -295,6 +301,8 @@
           dinossauroRect.bottom - margem > obstaculoRect.top + margem &&
           dinossauroRect.top + margem < obstaculoRect.bottom - margem
         ) {
+          dino.colidiu = true; // Define colidiu como verdadeiro
+          dino.element.style.backgroundPositionX = dino.backgroundPositionsX.colisao;
           exibirGameOver();
         
           clearInterval(gameLoop);
