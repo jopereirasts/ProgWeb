@@ -14,12 +14,13 @@
     let frame = 0;
     let botaoAgachado = false;
     let Manha = true;
+    let pontuacao = 0;
   
     function init() {
       deserto = new Deserto();
       dino = new Dino();
     
-      setInterval(ManhaNoite, 1000);
+      setInterval(ManhaNoite, 60000);
 
       window.addEventListener("keydown", startGameOnSpace);
       window.addEventListener("keydown", pauseGameOnP);
@@ -74,7 +75,6 @@
     window.addEventListener("keyup", (e) => {
       if (e.code === "ArrowDown") {
         botaoAgachado = false; 
-        //console.log("soltou");
       }
     });
     
@@ -235,7 +235,6 @@
 
     function RetornaObstaculo() {
       const randomValue = Math.random();
-      //const randomValue = 0.32;
       if (randomValue < 0.33) {
         return Cacto;
       } else if (randomValue < 0.66 && randomValue >= 0.33) {
@@ -287,6 +286,25 @@
       });
     }
 
+    function atualizarPontuacao() {
+      const pontuacaoElement = document.getElementById("pontuacao"); 
+      if (pontuacaoElement) {
+        pontuacaoElement.innerText = `${pontuacao}`;
+      } else {
+        const scoreAtual = document.createElement("div");
+        scoreAtual.id = "pontuacao";
+        scoreAtual.innerText = `${pontuacao}`;
+        scoreAtual.style.position = "absolute";
+        scoreAtual.style.top = "10px"; 
+        scoreAtual.style.left = "950px";
+        scoreAtual.style.fontFamily = "fantasy";
+        scoreAtual.style.zIndex = "4";
+        scoreAtual.style.textShadow = "-1px 0 white, 0 1px white, 1px 0 white, 0 -1px white";
+        scoreAtual.style.fontSize = "20px";
+        deserto.element.appendChild(scoreAtual);
+      }
+    }
+
     function verificaColisao() {
       for (let i = 0; i < obstaculos.length; i++) {
         const obstaculo = obstaculos[i];
@@ -301,7 +319,7 @@
           dinossauroRect.bottom - margem > obstaculoRect.top + margem &&
           dinossauroRect.top + margem < obstaculoRect.bottom - margem
         ) {
-          dino.colidiu = true; // Define colidiu como verdadeiro
+          dino.colidiu = true; 
           dino.element.style.backgroundPositionX = dino.backgroundPositionsX.colisao;
           exibirGameOver();
         
@@ -324,6 +342,11 @@
         }
       });
 
+      if (frame % 30 === 0 && !dino.colidiu) {
+        pontuacao += 1;
+        atualizarPontuacao();
+      }
+
       if (frame % 1000 === 0) {
         const obstaculo = RetornaObstaculo();
         obstaculos.push(new obstaculo());
@@ -334,15 +357,9 @@
         if (parseInt(obstaculo.element.style.right) >= WIDTH) {
           obstaculos.shift();
           obstaculo.element.remove();
-
         }
       });
       verificaColisao();
-      //console.log("cactos "+obstaculos.length); //testeeeee
-      //console.log("nuvens "+nuvens.length);
     }
-    
-  
     init()
-  
   })()
