@@ -231,8 +231,6 @@
       }
     }
 
-    
-
     function RetornaObstaculo() {
       const randomValue = Math.random();
       if (randomValue < 0.33) {
@@ -255,6 +253,19 @@
         this.element.style.left = "50%";
         this.element.style.transform = "translate(-50%, -50%)";
         deserto.element.appendChild(this.element);
+
+        this.pontuacaoElement = document.createElement("div");
+        this.pontuacaoElement.className = "pontuacao";
+        this.pontuacaoElement.style.position = "absolute";
+        this.pontuacaoElement.style.top = "10px";
+        this.pontuacaoElement.style.left = "50%";
+        this.pontuacaoElement.style.transform = "translate(-50%, 0)";
+        this.pontuacaoElement.innerText = `Pontuação: ${pontuacao}`;
+        this.pontuacaoElement.style.fontFamily = "fantasy";
+        this.pontuacaoElement.style.zIndex = "4";
+        this.pontuacaoElement.style.textShadow = "-1px 0 white, 0 1px white, 1px 0 white, 0 -1px white";
+        this.pontuacaoElement.style.fontSize = "20px";
+        deserto.element.appendChild(this.pontuacaoElement);
       }
     }
     
@@ -280,6 +291,8 @@
     
       deserto.element.appendChild(gameOver.element);
       deserto.element.appendChild(botaoRestart.element);
+
+      gameOver.pontuacaoElement.innerText = `Pontuação: ${pontuacao}`;
 
       botaoRestart.element.addEventListener("click", () => {
         location.reload();
