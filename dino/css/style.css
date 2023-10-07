@@ -21,7 +21,7 @@
   width: 66px;
   left: 20px;
   height: 70px;
-  z-index: 3;
+  z-index: 4;
 }
 
 .nuvem {
@@ -56,4 +56,20 @@
   width: 68px;
   height: 60px;
   z-index: 3;
+}
+
+.gameover{
+  background-image: url(../img/sprite.png);
+  position: absolute;
+  width: 290px;
+  height: 17px;
+  z-index: 4;
+}
+
+.restart{
+  background-image: url(../img/sprite.png);
+  position: absolute;
+  width: 55px;
+  height: 50px;
+  z-index: 4;
 }

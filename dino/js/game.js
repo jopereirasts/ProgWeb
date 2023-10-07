@@ -19,7 +19,7 @@
       deserto = new Deserto();
       dino = new Dino();
     
-      setInterval(ManhaNoite, 60000);
+      setInterval(ManhaNoite, 1000);
 
       window.addEventListener("keydown", startGameOnSpace);
       window.addEventListener("keydown", pauseGameOnP);
@@ -218,8 +218,11 @@
       mover() {
         this.element.style.right = `${parseInt(this.element.style.right) + 1}px`;
         this.element.style.backgroundPositionX = this.element.style.backgroundPositionX === this.backgroundPositionsX.cima ? this.backgroundPositionsX.baixo : this.backgroundPositionsX.cima;
+        
       }
     }
+
+    
 
     function RetornaObstaculo() {
       const randomValue = Math.random();
@@ -230,6 +233,72 @@
         return CactoMaior;
       } else {
         return Passaro;
+      }
+    }
+
+    class GameOver {
+      constructor() {
+        this.element = document.createElement("div");
+        this.element.className = "gameover";
+        this.element.style.backgroundPositionY = "-20px";
+        this.element.style.backgroundPositionX = "-968px"
+        this.element.style.position = "absolute";
+        this.element.style.top = "50%";
+        this.element.style.left = "50%";
+        this.element.style.transform = "translate(-50%, -50%)";
+        deserto.element.appendChild(this.element);
+      }
+    }
+    
+    class Restart {
+      constructor() {
+        this.element = document.createElement("div");
+        this.element.className = "restart";
+        this.element.style.backgroundPositionY = "0px";
+        this.element.style.backgroundPositionX = "0px"
+        this.element.style.position = "absolute";
+        this.element.style.top = "60%"; 
+        this.element.style.left = "50%";
+        this.element.style.transform = "translate(-50%, -50%)";
+        this.element.style.marginTop = "20px";
+        deserto.element.appendChild(this.element);
+      }
+    }
+
+    
+    function exibirGameOver() {
+      const gameOver = new GameOver();
+      const botaoRestart = new Restart();
+    
+      deserto.element.appendChild(gameOver.element);
+      deserto.element.appendChild(botaoRestart.element);
+
+      botaoRestart.element.addEventListener("click", () => {
+        location.reload();
+      });
+    }
+
+
+
+
+    function verificaColisao() {
+      for (let i = 0; i < obstaculos.length; i++) {
+        const obstaculo = obstaculos[i];
+        const dinossauroRect = dino.element.getBoundingClientRect();
+        const obstaculoRect = obstaculo.element.getBoundingClientRect();
+        
+        const margem = 10;
+    
+        if (
+          dinossauroRect.right - margem > obstaculoRect.left + margem &&
+          dinossauroRect.left + margem < obstaculoRect.right - margem &&
+          dinossauroRect.bottom - margem > obstaculoRect.top + margem &&
+          dinossauroRect.top + margem < obstaculoRect.bottom - margem
+        ) {
+          exibirGameOver();
+        
+          clearInterval(gameLoop);
+        }
       }
     }
   
@@ -260,12 +329,9 @@
 
         }
       });
-
-      verificaColisao(dino, obstaculos);
-
+      verificaColisao();
       //console.log("cactos "+obstaculos.length); //testeeeee
       //console.log("nuvens "+nuvens.length);
-
     }
     
   
