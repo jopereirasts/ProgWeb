@@ -1,9 +1,12 @@
 const index = (req,res)=>{
-    res.send("Hello World");
+    res.render("main/index", {
+        msg: "Alguma mensagem",
+        layout:false 
+    });
 }
 
 const about = (req,res)=>{
-    res.send("Pagina About");
+    res.render("main/about", { layout:false });
 }
 
-export default {index,about};
+module.exports = { index, about };
