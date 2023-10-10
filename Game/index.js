@@ -12,7 +12,9 @@ const PORT = 4455;
 app.use(router)
 app.use(morgan("combined"));
 
-app.engine("handlebars",handlebars.engine());
+app.engine("handlebars",handlebars.engine({
+    helpers: require(`${__dirname}/src/views/helpers/helpers`)
+}));
 app.set("view engine","handlebars");
 app.set("views", `${__dirname}/src/views`);
 
