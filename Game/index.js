@@ -1,16 +1,14 @@
 const express = require('express');
 const router = require('./src/router/router');
-
-// import handlebars from 'express-handlebars';
 const handlebars = require("express-handlebars");
-//erro quando importo o handlebars
+
 const morgan = require('morgan');
 
 const app = express()
 const PORT = 4455;
 
 app.use(router)
-app.use(express.static(`${__dirname}/src/views/images`)); 
+app.use("/img", express.static(`${__dirname}/public/img`)); 
 app.use(morgan("combined"));
 
 app.engine("handlebars",handlebars.engine({
