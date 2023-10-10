@@ -1,12 +1,11 @@
 const index = (req,res)=>{
     res.render("main/index", {
-        msg: "Alguma mensagem",
-        layout:false 
+        msg: "Alguma mensagem"
     });
 }
 
 const about = (req,res)=>{
-    res.render("main/about", { layout:false });
+    res.render("main/about");
 }
 
 const profs = (req,res)=>{
@@ -16,7 +15,7 @@ const profs = (req,res)=>{
         {nome: "André", sala: 1113},
         {nome: "Tayana", sala: 1114},
     ];
-    res.render('main/profs',{professores, layout:false});
+    res.render('main/profs',{professores});
 }
 
 module.exports = { index, about, profs };
