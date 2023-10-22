@@ -1,3 +1,6 @@
+Explicação correta
+Nota: 2.0
+
 No Javascript, a diferença entre == e === é basicamente a verificação de tipos.
 == apenas verifica os valores, por exemplo 5 == "5" seria retornado como True, pois o Javascript
 converte os valores e realiza a comparação.

@@ -1,41 +1,44 @@
-class Venda{
-    constructor(id,qtd,preco){
+/* Código desenvolvido corretamente */
+/* Nota: 2.0 */
+
+class Venda {
+    constructor(id, qtd, preco) {
         this.id = id;
         this.qtd = qtd
         this.preco = preco;
     }
 
-    getId(){
+    getId() {
         return this.id;
     }
 
-    getQtd(){
+    getQtd() {
         return this.qtd;
     }
 
-    getPreco(){
+    getPreco() {
         return this.preco;
     }
 
-    setId(id){
+    setId(id) {
         this.id = id;
     }
 
-    setQtd(qtd){
+    setQtd(qtd) {
         this.qtd = qtd;
     }
 
-    setPreco(preco){
+    setPreco(preco) {
         this.preco = preco;
     }
 
-    getValorTotal(){
-        return this.getPreco()*this.getQtd();
+    getValorTotal() {
+        return this.getPreco() * this.getQtd();
     }
 }
 
-const venda1 = new Venda(1,2,3);
-const venda2 = new Venda(2,4,2);
+const venda1 = new Venda(1, 2, 3);
+const venda2 = new Venda(2, 4, 2);
 let total1 = venda1.getValorTotal();
 let total2 = venda2.getValorTotal();
 console.log(`Total de venda da venda de id ${venda1.id}: ${total1}`);
