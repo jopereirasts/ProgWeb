@@ -18,4 +18,8 @@ const profs = (req,res)=>{
     res.render('main/profs',{professores});
 }
 
-module.exports = { index, about, profs };
+const ui = (req,res) =>{
+    res.render("main/ui");
+}
+
+module.exports = { index, about, profs, ui };
