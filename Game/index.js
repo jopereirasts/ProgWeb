@@ -14,6 +14,7 @@ app.use("/webfonts", express.static(`${__dirname}/node_modules/@fortawesome/font
 app.use("/js",[
     express.static(`${__dirname}/public/js`),
     express.static(`${__dirname}/node_modules/bootstrap/dist/js/`),
+    express.static(`${__dirname}/node_modules/@popperjs/core/dist/umd/`),
 ]);
 app.use(sass({
     src: `${__dirname}/public/scss`,
@@ -21,6 +22,7 @@ app.use(sass({
     outputStyle: "compressed",
     prefix: "/css",
 }));
+app.use('/game', express.static("../tRex"));
 
 app.engine("handlebars",handlebars.engine({
     helpers: require(`${__dirname}/src/views/helpers/helpers`),
