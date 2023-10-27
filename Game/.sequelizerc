@@ -3,4 +3,4 @@ module.exports = {
     "models-path": `${__dirname}/src/models`,
     "seeders-path": `${__dirname}/src/database/seeders`,
     "migrations-path": `${__dirname}/src/database/migrations`,
-    };
+};
