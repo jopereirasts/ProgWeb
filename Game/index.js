@@ -22,7 +22,7 @@ app.use(sass({
     outputStyle: "compressed",
     prefix: "/css",
 }));
-app.use('/game', express.static("../tRex"));
+app.use('/trex', express.static("../tRex"));
 
 app.engine("handlebars",handlebars.engine({
     helpers: require(`${__dirname}/src/views/helpers/helpers`),
