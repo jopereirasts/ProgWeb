@@ -1,6 +1,6 @@
 const index = (req,res)=>{
     res.render("main/index", {
-        msg: "Jogo do T-rex"
+        msg: "Jogo do T-rex. Aplicação implementada para a Disciplina de Programação Web pelo discente Jo Pereira"
     });
 }
 
