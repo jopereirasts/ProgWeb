@@ -19,7 +19,7 @@ async function create (req,res) {
         console.log("add curso");
         try {
             await Curso.create(req.body);
-            res.redirect("/");
+            res.redirect("/curso");
         } catch (err) {
             throw new Error(err);
         }
