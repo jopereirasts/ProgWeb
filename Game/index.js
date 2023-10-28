@@ -6,7 +6,7 @@ const morgan = require('morgan');
 const app = express()
 const PORT = 4455;
 
-app.use(router)
+
 app.use(morgan("combined"));
 app.use("/img", express.static(`${__dirname}/public/img`)); 
 app.use("/css", express.static(`${__dirname}/public/css`)); 
@@ -23,6 +23,9 @@ app.use(sass({
     prefix: "/css",
 }));
 app.use('/trex', express.static("../tRex"));
+app.use(express.urlencoded({extended: false}));
+
+app.use(router);
 
 app.engine("handlebars",handlebars.engine({
     helpers: require(`${__dirname}/src/views/helpers/helpers`),
