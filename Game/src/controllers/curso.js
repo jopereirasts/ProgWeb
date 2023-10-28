@@ -1,5 +1,5 @@
 const models = require("../models/index");
-const Curso = models.curso;
+const Curso = models.Curso;
 
 async function index (req,res) {
     const cursos = await Curso.findAll();
@@ -12,15 +12,16 @@ async function read (req,res) {
     res.end(cursoId);
 };
 async function create (req,res) {
+    console.log(req.route.methods.get);
     if (req.route.methods.get) {
         res.render("curso/create");
     } else {
-        const curso = req.body
+        console.log("add curso");
         try {
-            await Curso.create(curso);
-            res.redirect("/curso");
-        } catch (e) {
-            console.log(e);
+            await Curso.create(req.body);
+            res.redirect("/");
+        } catch (err) {
+            throw new Error(err);
         }
     }
 };
