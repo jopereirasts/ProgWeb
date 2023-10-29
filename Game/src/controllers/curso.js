@@ -3,13 +3,16 @@ const Curso = models.Curso;
 
 async function index (req,res) {
     const cursos = await Curso.findAll();
-    res.render('curso/index',{
+    res.render('curso/index',{  
         cursos: cursos.map(curso => curso.toJSON())
     });
 };
 async function read (req,res) {
-    const cursoId = req.params.id;
-    res.end(cursoId);
+    const id = req.params.id;
+    const curso = await Curso.findOne({where: {id}});
+    res.render("curso/read", {
+       curso: curso.toJSON() 
+    })
 };
 async function create (req,res) {
     console.log(req.route.methods.get);

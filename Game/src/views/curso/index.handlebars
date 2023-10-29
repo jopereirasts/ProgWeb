@@ -1,6 +1,6 @@
 <div class="container">
     <h1>Listagem de Cursos</h1>
     {{#each cursos}}
-        <li>{{nome}}</li>
+        <li><a href="/curso/read/{{id}}"> {{nome}}</a></li>
     {{/each}}
 </div>
