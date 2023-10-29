@@ -9,7 +9,7 @@ async function index (req,res) {
 };
 async function read (req,res) {
     const id = req.params.id;
-    const curso = await Curso.findOne({where: {id}});
+    const curso = await Curso.findOne({where: {id}, include: models.Area });
     res.render("curso/read", {
        curso: curso.toJSON() 
     })
