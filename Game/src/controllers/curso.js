@@ -15,6 +15,7 @@ async function read (req,res) {
        curso: curso.toJSON() 
     })
 };
+
 async function create (req,res) {
     console.log(req.route.methods.get);
     if (req.route.methods.get) {
@@ -46,7 +47,7 @@ async function update (req,res) {
 
         await curso.save();
 
-        res.redirect(`/curso/read/${id}`);
+        res.redirect(`/curso/${id}`);
     } catch (error) {
         console.log(error);
         res.status(500).send("Erro ao atualizar o curso");
