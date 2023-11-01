@@ -15,7 +15,7 @@ router.get("/area",AreaController.index);
 
 //CursoController
 router.get("/curso",cursoController.index);
-router.get("/curso/:id",cursoController.read);
+router.get("/curso/read/:id",cursoController.read);
 router.get("/curso/create",cursoController.create);
 router.post("/curso/create",cursoController.create);
 router.get("/curso/update/:id",cursoController.update);

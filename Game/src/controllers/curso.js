@@ -47,7 +47,7 @@ async function update (req,res) {
 
         await curso.save();
 
-        res.redirect(`/curso/${id}`);
+        res.redirect(`/curso/read/${id}`);
     } catch (error) {
         console.log(error);
         res.status(500).send("Erro ao atualizar o curso");
