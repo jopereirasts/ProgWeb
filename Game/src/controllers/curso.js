@@ -7,6 +7,7 @@ async function index (req,res) {
         cursos: cursos.map(curso => curso.toJSON())
     });
 };
+
 async function read (req,res) {
     const id = req.params.id;
     const curso = await Curso.findOne({where: {id}, include: models.Area });
@@ -28,6 +29,7 @@ async function create (req,res) {
         }
     }
 };
+
 async function update (req,res) {
     const id = req.params.id;
     try {
@@ -44,12 +46,13 @@ async function update (req,res) {
 
         await curso.save();
 
-        res.redirect(`/curso/${id}`);
+        res.redirect(`/curso/read/${id}`);
     } catch (error) {
         console.log(error);
         res.status(500).send("Erro ao atualizar o curso");
     }
 };
+
 async function remove (req,res) {
     const { id } = req.params;
 

@@ -20,7 +20,7 @@ router.get("/curso/create",cursoController.create);
 router.post("/curso/create",cursoController.create);
 router.get("/curso/update/:id",cursoController.update);
 router.post("/curso/update/:id",cursoController.update);
-router.post("/curso/remove/:id",cursoController.remove);
+router.delete("/curso/remove/:id",cursoController.remove);
 
 
 module.exports = router;
