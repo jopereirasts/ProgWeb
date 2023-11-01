@@ -28,7 +28,39 @@ async function create (req,res) {
         }
     }
 };
-async function update (req,res) {};
-async function remove (req,res) {};
+async function update (req,res) {
+    const id = req.params.id;
+    try {
+        const curso = await Curso.findByPk(id);
+
+        if (!curso) {
+            res.status(404).send("Curso não encontrado");
+            return;
+        }
+
+        curso.sigla = req.body.sigla;
+        curso.nome = req.body.nome;
+        curso.areaId = req.body.areaId;
+
+        await curso.save();
+
+        res.redirect(`/curso/${id}`);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Erro ao atualizar o curso");
+    }
+};
+async function remove (req,res) {
+    const { id } = req.params;
+
+    try{
+        await Curso.destroy({where: {id:id}});
+        res.send("Curso deletado com sucesso");
+    } catch(e) {
+        console.log(e);
+        res.status(500).send(e);
+
+    }
+};
 
 module.exports = { index, read, create, update, remove }
